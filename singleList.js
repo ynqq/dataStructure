@@ -13,51 +13,71 @@
  *  目前没用到
  */
 
-class Node {
-  constructor(data) {
-    this.data = data;
-    this.next = null;
+(() => {
+  class Node {
+    constructor(data) {
+      this.data = data;
+      this.next = null;
+    }
   }
-}
 
-class SingleList {
-  constructor() {
-    this.head = null;
-    this.footer = null;
-    this.size = 0;
-  }
-  add(data) {
-    if (this.head === null) {
-      this.head = new Node(data);
-      this.footer = this.head;
-    } else {
-      this.footer.next = new Node(data);
-      this.footer = this.footer.next;
+  class SingleList {
+    constructor() {
+      this.head = null;
+      this.footer = null;
+      this.size = 0;
     }
-    this.size++;
-  }
-  remove(data) {
-    let prev = this.head;
-    let current = this.head;
-    while (current !== null) {
-      if (current.data === data) {
-        prev.next = current.next;
-        this.size--;
-        return true;
+    add(data) {
+      if (this.head === null) {
+        this.head = new Node(data);
+        this.footer = this.head;
+      } else {
+        this.footer.next = new Node(data);
+        this.footer = this.footer.next;
       }
-      prev = current;
-      current = current.next;
+      this.size++;
     }
-    return false;
-  }
-  find(data) {
-    let current = this.head;
-    while (current !== null) {
-      if (current.data === data) {
-        return current;
+    remove(data) {
+      let prev = this.head;
+      let current = this.head;
+      while (current !== null) {
+        if (current.data === data) {
+          prev.next = current.next;
+          this.size--;
+          return true;
+        }
+        prev = current;
+        current = current.next;
       }
-      current = current.next;
+      return false;
     }
-    return null;
+    find(data) {
+      let current = this.head;
+      while (current !== null) {
+        if (current.data === data) {
+          return current;
+        }
+        current = current.next;
+      }
+      return null;
+    }
   }
-}
+  function main() {
+    console.log("单链表---------------");
+    const list = new SingleList();
+    list.remove("data");
+    list.add({ name: "1" });
+    list.add({ name: "2" });
+    list.add({ name: "3" });
+    const data = { name: "4" };
+    list.add(data);
+    list.add({ name: "5" });
+    console.log(list);
+    console.log(list.find(data));
+    list.remove(data);
+    console.log(list);
+    console.log("单链表---------------");
+  }
+
+  main();
+})();

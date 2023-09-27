@@ -41,4 +41,62 @@
  *  f. 文件系统
  */
 
-(() => {})();
+const tree = {
+  val: 1,
+  left: {
+    val: 2,
+    left: {
+      val: 3,
+      left: { val: 5, left: { val: 8 } },
+      right: { val: 4, right: { val: 9, left: { val: 10 } } },
+    },
+    right: {
+      val: 6,
+      right: {
+        val: 7,
+        left: {
+          val: 11,
+          left: null,
+          right: null,
+        },
+      },
+    },
+  },
+  right: {
+    val: 12,
+    left: {
+      val: 13,
+      left: {
+        val: 15,
+        left: { val: 16 },
+        right: { val: 17, right: { val: 18 } },
+      },
+    },
+    right: { val: 14, left: null, right: null },
+  },
+};
+
+// 前序遍历
+const preOrder = (root) => {
+  if (!root) return;
+  console.log(root.val);
+  preOrder(root.left);
+  preOrder(root.right);
+};
+preOrder(tree);
+// 中序遍历
+const inOrder = (root) => {
+  if (!root) return;
+  inOrder(root.left);
+  console.log(root.val);
+  inOrder(root.right);
+};
+inOrder(tree);
+// 后序遍历
+const postOrder = (root) => {
+  if (!root) return;
+  postOrder(root.left);
+  postOrder(root.right);
+  console.log(root.val);
+};
+postOrder(tree);
